@@ -4,13 +4,16 @@ import bikes from './data/data.json' assert { type: 'json' };
 const app = express();
 const port = 5500;
 
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.render('bikes', { bikes });
 });
 
 app.get('/bike', (req, res) => {
-  const foundBike = bikes.find(b => b.id === req.query.id);
-  res.send(foundBike);
+  const bike = bikes.find(b => b.id === req.query.id);
+  return res.render('overview', { bike });
 });
 
 app.listen(port, () => {

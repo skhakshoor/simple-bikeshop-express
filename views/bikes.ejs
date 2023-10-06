@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>The Bicycle Shop | Programming With Ariyan</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <header>
+          <h1>The Bicycle Shop</h1>
+        </header>
+      </nav>
+
+      <div class="bicycleShop">
+        <% for (let bike of bikes) { %>
+        <div class="bicycle">
+          <div class="bicycle__image">
+            <img src="/image/<%=bike.image%>" alt="<%=bike.name%>" />
+          </div>
+        
+          <div class="bicycle__name">
+            <a href="/bike?id=<%=bike.id%>"><%=bike.name%></a>
+          </div>
+        
+          <div class="bicycle__rating">
+            <% for (let star = 0; star < bike.star; star++ ) { %>
+              <span class="fa fa-star checked"></span>
+            <% } %>
+            <% for (let star = 0; star < 5 - bike.star; star++ ) { %>
+              <span class="fa fa-star"></span>
+            <% } %>
+          </div>
+        
+          <div class="bicycle__price">
+            <% if (bike.hasDiscount) { %>
+              <p class="current_price">$<%= bike.originalPrice * (100 - bike.discount) / 100 %></p>
+              <p class="old_price">$<%= bike.originalPrice %></p>            
+            <% } else { %>
+              <p class="current_price">$<%= bike.originalPrice %></p><p></p>
+            <% } %>            
+          </div>
+          <% if(bike.hasDiscount) { %>
+          <div class="discount__rate">
+            <p><%=bike.discount%> % Off</p>
+          </div>
+          <% } %>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
