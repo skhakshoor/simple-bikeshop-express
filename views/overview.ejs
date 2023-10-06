@@ -16,26 +16,32 @@
       </nav>
       <div class="singleBicycle">
         <div class="singleBicycle_img">
-          <img src="<%IMAGE%>" alt="<%NAME%>" />
+          <img src="/image/<%=bike.image%>" alt="<%=bike.name%>" />
         </div>
         <div class="singleBicycle_info">
           <div class="singleBicycle_name">
-            <p><%NAME%></p>
+            <p><%=bike.name%></p>
           </div>
 
           <div class="singleBicycle_price">
-            <p><%NEW-PRICE%></p>
+            <p>
+              <% if (bike.hasDiscountbike) { %>
+              $<%= bike.originalPrice * (100 - bike.discount) / 100 %>
+              <% } else { %>
+                $<%= bike.originalPrice %>
+              <% } %>
+            </p>
           </div>
 
           <div class="singleBicycle_desc">
-            <p><%DETAILS%></p>
+            <p><%=bike.detail%></p>
           </div>
         </div>
 
         <div class="goBack">
           <a href="/">
             <svg class="icon icon-arrow">
-              <use xlink:href="/icons.svg#icon-arrow"></use>
+              <use xlink:href="/image/icons.svg#icon-arrow"></use>
             </svg>
           </a>
         </div>
